@@ -41,11 +41,27 @@ Run the model
 
 ![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/ui.png)
 
-## Receipt
+## English Receipt
 ![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/image.png)
 
 ## Response
 ![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/result.png)
+
+## Hindi Receipt
+![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/hindi.png)
+
+## Response
+![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/Hindi%20Response.png)
+
+## Unrelated Prompt
+![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/Unrelated%20Prompt.png)
+
+## Response
+![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/response.png)
+
+## Exception Handling
+![img](https://github.com/FahadUsmani20/MultiLanguageModel---Invoice-Extractor/blob/main/assets/Exception%20Handling.png)
+
 
 
 
