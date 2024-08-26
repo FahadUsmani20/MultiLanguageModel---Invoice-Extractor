@@ -1,36 +1,38 @@
-from dotenv import load_dotenv
-
-load_dotenv() # it will load all the environment vriables from .env
-
 import streamlit as st
 import os
-from PIL import Image
 import google.generativeai as genai
+import data_processing
+from PIL import Image, ImageOps
+from dotenv import load_dotenv
 
-genai.configure(api_key=os.getenv("google_api_key"))
+# Function to generate a response using Google Generative AI
+def get_gemini_response(input, image, prompt):
+    try:
+        response = model.generate_content([input, image[0], prompt])
 
-model = genai.GenerativeModel("gemini-pro-vision")
+        # Safely access the candidate text if available
+        if response and response.candidates:
+            for candidate in response.candidates:
+                
+                # Access the text within content.parts[0].text
+                if candidate.content and candidate.content.parts:
+                    return candidate.content.parts[0].text
+                else:
+                    return "No valid text found in the response content."
+        else:
+            return "No valid response received. Please check the input or try again."
 
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
-def get_gemini_response(input, image, prompt): ## Takes input as image and a prompt. Return a text prompt as answer
-    response = model.generate_content([input, image[0], prompt])
-    return response.text
-
-def input_image_details(uploaded_file): ## Image Data
-    if uploaded_file is not None:
-        bytes_data = uploaded_file.getvalue()
-        image_parts = [{
-            "mime_type" : uploaded_file.type,
-            "data" : bytes_data
-        }]
-        return image_parts
-    else:
-        raise FileNotFoundError("No File Uploaded")
+load_dotenv() # It will load all the environment variables from .env
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 st.set_page_config(page_title="MultiLanguage Invoice Extractor")
 st.header("MultiLanguage Invoice Extractor")
 
-input = st.text_input("Input Prompt : ", key="input") ## User Input
+input_user = st.text_input("Input Prompt : ", key="input") ## User Input
 
 uploaded_file = st.file_uploader("Choose an image....", type=["jpg", "jpeg", "png"])
 
@@ -46,7 +48,10 @@ You are an expert in understanding invoices. We will upload a image as invoice a
 """
 
 if submit:
-    image_data = input_image_details(uploaded_file)
-    response = get_gemini_response(input_prompt, image_data, input)
-    st.subheader("The Response is")
-    st.write(response)
+    if uploaded_file:
+        image_data = data_processing.input_image_details(uploaded_file)
+        response = get_gemini_response(input_prompt, image_data, input_user)
+        st.subheader("The Response is:")
+        st.write(response)
+    else:
+        st.write("Please upload an image before submitting.")
