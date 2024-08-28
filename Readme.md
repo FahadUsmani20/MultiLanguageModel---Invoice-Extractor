@@ -1,7 +1,7 @@
 
 ## MultiLanguage-Invoice-Extractor
 
-The MultiLanguage Invoice Extractor is a Streamlit web application that leverages Google's GenerativeAI to analyze and interpret invoice images. The application allows users to input prompts related to invoice details and upload invoice images. The underlying model, powered by the Gemini Pro Vision from GenerativeAI, processes the input and provides detailed responses, making it a versatile tool for extracting information from invoices.
+The MultiLanguage Invoice Extractor is a Streamlit web application that leverages Google's GenerativeAI to analyze and interpret invoice images. The application allows users to input prompts related to invoice details and upload invoice images. The underlying model, powered by the Gemini Flash from GenerativeAI, processes the input and provides detailed responses, making it a versatile tool for extracting information from invoices.
 
 ## Dependencies
     Streamlit
